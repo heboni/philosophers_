@@ -6,7 +6,7 @@
 /*   By: heboni <heboni@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:04:05 by heboni            #+#    #+#             */
-/*   Updated: 2022/06/26 23:10:10 by heboni           ###   ########.fr       */
+/*   Updated: 2022/06/27 16:18:32 by heboni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	main(int argc, char **argv)
 	t_philo_ctx	*philos_ctx;
 	int			philo_count;
 
-	philo_count = ft_atoi(argv[1]);
-	if ((argc != 5 && argc != 6) || philo_count == 0)
+	if (argc != 5 && argc != 6)
 		return (INPUT_ERROR);
+	philo_count = ft_atoi(argv[1]);
 	ctx = (t_ctx *)malloc(sizeof(t_ctx));
 	if (ctx == NULL)
 		return (STACK_OVERFLOW);

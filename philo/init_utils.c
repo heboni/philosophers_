@@ -6,7 +6,7 @@
 /*   By: heboni <heboni@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 22:15:19 by heboni            #+#    #+#             */
-/*   Updated: 2022/06/26 23:01:55 by heboni           ###   ########.fr       */
+/*   Updated: 2022/06/27 16:09:59 by heboni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ int	ctx_init(t_ctx *ctx, char **argv)
 	ctx->die_time = ft_atoi(argv[2]);
 	ctx->eat_time = ft_atoi(argv[3]);
 	ctx->sleep_time = ft_atoi(argv[4]);
+	if (ctx->philo_count <= 0 || ctx->die_time < 0 || \
+				ctx->eat_time < 0 || ctx->sleep_time < 0)
+		return (error_print("Input error: \
+					values should be positive.", ctx));
 	if (argv[5])
 	{
 		ctx->meals_count = ft_atoi(argv[5]);
@@ -27,9 +31,6 @@ int	ctx_init(t_ctx *ctx, char **argv)
 	}
 	else
 		ctx->meals_count = -1;
-	if (ctx->die_time < 0 || ctx->eat_time < 0 || ctx->sleep_time < 0)
-		return (error_print("Input error: \
-					values should be positive.", ctx));
 	ctx->phs_eaten_count = 0;
 	ctx->forks_m = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
 												* ctx->philo_count);
