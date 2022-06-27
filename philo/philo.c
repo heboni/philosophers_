@@ -6,7 +6,7 @@
 /*   By: heboni <heboni@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 18:05:58 by heboni            #+#    #+#             */
-/*   Updated: 2022/06/07 22:25:17 by heboni           ###   ########.fr       */
+/*   Updated: 2022/06/27 15:17:24 by heboni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	philo_routine(t_philo_ctx *philo_ctx)
 	philo_ctx->philo->last_meal_time = time;
 	pthread_mutex_unlock(&philo_ctx->ctx->m_meal_time);
 	philo_print(philo_ctx, "is eating", &time);
-	philo_ctx->philo->meals_n++;
 	if (philo_ctx->philo->meals_n == philo_ctx->ctx->meals_count)
 	{
 		pthread_mutex_lock(&philo_ctx->ctx->m_phs_eaten);
@@ -82,6 +81,7 @@ void	philo_routine(t_philo_ctx *philo_ctx)
 	ft_usleep(philo_ctx->ctx->eat_time);
 	pthread_mutex_unlock(&philo_ctx->ctx->forks_m[philo_ctx->philo->left]);
 	pthread_mutex_unlock(&philo_ctx->ctx->forks_m[philo_ctx->philo->right]);
+	philo_ctx->philo->meals_n++;
 	philo_print(philo_ctx, "is sleeping", 0);
 	ft_usleep(philo_ctx->ctx->sleep_time);
 	philo_print(philo_ctx, "is thinking", 0);
